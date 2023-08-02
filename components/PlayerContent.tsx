@@ -70,7 +70,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   };
 
   // Separate function to set up and handle sound
-  const setupSound = () => {
+  const useSetupSound = () => {
     const [play, { pause, sound }] = useSound(songUrl, {
       volume: volume,
       onplay: () => setIsPlaying(true),
@@ -93,7 +93,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     return [play, pause];
   };
 
-  const [play, pause] = setupSound(); // Call the setupSound function unconditionally
+  const [play, pause] = useSetupSound(); // Call the setupSound function unconditionally
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
