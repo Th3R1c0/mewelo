@@ -4,16 +4,18 @@ import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types";
 import Image from "next/image";
 import PlayButton from "./PlayButton";
+import { twMerge } from "tailwind-merge";
 interface SongItemProps {
   data: Song;
   onClick: (id: string) => void;
+  className?: string;
 }
-const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
+const SongItem: React.FC<SongItemProps> = ({ data, onClick, className }) => {
   const imagePath = useLoadImage(data);
 
   return (
     <div
-      className="
+      className={twMerge(`
         relative 
         group 
         flex 
@@ -28,7 +30,8 @@ const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         hover:bg-neutral-400/10 
         transition 
         p-3
-      "
+        
+      `, className)}
       onClick={() => onClick(data.id)}
     >
       <div
