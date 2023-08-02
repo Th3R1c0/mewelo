@@ -1,14 +1,11 @@
-"use client";
-
-import useSound from "use-sound";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
+import useSound from "use-sound";
 
 import { Song } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
-
 import LikeButton from "./LikeButton";
 import MediaItem from "./MediaItem";
 import Slider from "./Slider";
@@ -56,25 +53,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     player.setId(previousSong);
   };
 
-  const [play, { pause, sound }] = useSound(songUrl, {
-    volume: volume,
-    onplay: () => setIsPlaying(true),
-    onend: () => {
-      setIsPlaying(false);
-      onPlayNext();
-    },
-    onpause: () => setIsPlaying(false),
-    format: ["mp3"],
-  });
-
-  useEffect(() => {
-    sound?.play();
-
-    return () => {
-      sound?.unload();
-    };
-  }, [sound]);
-
   const handlePlay = () => {
     if (!isPlaying) {
       play();
@@ -90,6 +68,32 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       setVolume(0);
     }
   };
+
+  // Separate function to set up and handle sound
+  const setupSound = () => {
+    const [play, { pause, sound }] = useSound(songUrl, {
+      volume: volume,
+      onplay: () => setIsPlaying(true),
+      onend: () => {
+        setIsPlaying(false);
+        onPlayNext();
+      },
+      onpause: () => setIsPlaying(false),
+      format: ["mp3"],
+    });
+
+    useEffect(() => {
+      sound?.play();
+
+      return () => {
+        sound?.unload();
+      };
+    }, [sound]);
+
+    return [play, pause];
+  };
+
+  const [play, pause] = setupSound(); // Call the setupSound function unconditionally
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
