@@ -31,7 +31,7 @@ const AuthModal = () => {
   const handleExitModal = () => {
     onClose()
   }
-
+  
   useEffect(() => {
     if(session) {
       router.refresh();

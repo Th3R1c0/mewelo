@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import Player from "@/components/Player";
+
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default async function RootLayout({
   const userSongs = await getSongsByUserId();
   return (
     <html lang="en">
-      <body className="bg-black h-screen flex w-screen text-white">
+      <body className="bg-black h-screen flex flex-col w-screen text-white">
         <ToasterProvider />
         <SupbaseProvider>
           <UserProvider>

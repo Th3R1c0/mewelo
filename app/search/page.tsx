@@ -3,6 +3,7 @@ import SearchInput from "@/components/SearchInput";
 import Header from "@/components/Header";
 
 import SearchContent from "./components/SearchContent";
+import SiteFooter from "@/components/Footer";
 
 export const revalidate = 0;
 
@@ -31,6 +32,7 @@ const Search = async ({ searchParams }: SearchProps) => {
         </div>
       </Header>
       <SearchContent songs={songs} />
+  
     </div>
   );
 };

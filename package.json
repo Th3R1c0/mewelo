@@ -34,6 +34,8 @@
     "react-hook-form": "^7.45.2",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "stripe": "^12.14.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
@@ -42,9 +44,11 @@
     "uniqid": "^5.4.0",
     "uniquid": "^1.1.4",
     "use-sound": "^4.0.1",
+    "usehooks-ts": "^2.9.1",
     "zustand": "^4.3.9"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@types/uniqid": "^5.3.2",
     "supabase": "^1.82.1"
   }

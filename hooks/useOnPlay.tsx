@@ -4,7 +4,7 @@ import usePlayer from "./usePlayer";
 // import useSubscribeModal from "./useSubscribeModal";
 import useAuthModal from "./useAuthModal";
 import { useUser } from "./useUser";
-
+import toast from 'react-hot-toast'
 const useOnPlay = (songs: Song[]) => {
   const player = usePlayer();
 //   const subscribeModal = useSubscribeModal();
@@ -13,7 +13,8 @@ const useOnPlay = (songs: Song[]) => {
 
   const onPlay = (id: string) => {
     if (!user) {
-      return authModal.onOpen();
+        toast.error('please log in soon')
+    //   return authModal.onOpen();
     }
 
     // if (!subscription) {
